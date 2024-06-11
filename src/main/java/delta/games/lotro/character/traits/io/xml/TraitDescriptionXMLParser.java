@@ -172,7 +172,7 @@ public class TraitDescriptionXMLParser
         else
         {
           String groupName=DOMParsingTools.getStringAttribute(groupAttrs,TraitDescriptionXMLConstants.TRAIT_GROUP_NAME_ATTR,null);
-          LOGGER.warn("Trait group not found: code="+code+", name="+groupName);
+          LOGGER.warn("Trait group not found: code="+code+NAME+groupName);
         }
       }
     }
@@ -201,7 +201,7 @@ public class TraitDescriptionXMLParser
       }
       else
       {
-        LOGGER.warn("Skill not found: ID="+skillId+", name="+skillName);
+        LOGGER.warn("Skill not found: ID="+skillId+NAME+skillName);
       }
     }
   }
@@ -231,7 +231,7 @@ public class TraitDescriptionXMLParser
       else
       {
         String effectName=DOMParsingTools.getStringAttribute(effectAttrs,TraitDescriptionXMLConstants.EFFECT_NAME_ATTR,null);
-        LOGGER.warn("Effect not found: ID="+effectId+", name="+effectName);
+        LOGGER.warn("Effect not found: ID="+effectId+NAME+effectName);
       }
     }
   }
@@ -264,4 +264,6 @@ public class TraitDescriptionXMLParser
     EffectGenerator ret=new EffectGenerator(effect,spellcraft);
     return ret;
   }
+  
+  private static final String NAME = ", name=";
 }

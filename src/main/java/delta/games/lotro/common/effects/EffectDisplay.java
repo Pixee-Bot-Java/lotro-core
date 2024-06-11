@@ -180,7 +180,7 @@ public class EffectDisplay
       {
         if ((minMax[0]<0) && isMorale)
         {
-          String text=(-minMax[0])+" Damage";
+          String text=(-minMax[0])+DAMAGE;
           storage.add(text);
         }
         else
@@ -193,7 +193,7 @@ public class EffectDisplay
       {
         if ((minMax[0]<0) && (minMax[1]<0) && isMorale)
         {
-          String text=(-minMax[0])+" - "+(-minMax[1])+" Damage";
+          String text=(-minMax[0])+" - "+(-minMax[1])+DAMAGE;
           storage.add(text);
         }
         else
@@ -212,7 +212,7 @@ public class EffectDisplay
         int maxPercentage=(int)maxPercentageFloat;
         Float variance=description.getVariance();
         StringBuilder sb=new StringBuilder();
-        sb.append("Restores ");
+        sb.append(RESTORES);
         if (variance!=null)
         {
           float minPercentageFloat=maxPercentageFloat*(1-variance.floatValue());
@@ -313,13 +313,13 @@ public class EffectDisplay
           int damage=(value!=null)?((int)value.floatValue()):0;
           if (percentage!=100)
           {
-            String text=percentage+"% chance to Negate "+damage+" damage";
+            String text=percentage+"% chance to Negate "+damage+DAMAGE_1;
             storage.add(text);
           }
           else
           {
             // Never?
-            String text="Negate "+damage+" damage";
+            String text="Negate "+damage+DAMAGE_1;
             storage.add(text);
           }
         }
@@ -329,13 +329,13 @@ public class EffectDisplay
           if (percentage!=100)
           {
             // Never?
-            String text=percentage+"% chance to Negate "+percentageDamage+"% damage";
+            String text=percentage+"% chance to Negate "+percentageDamage+DAMAGE_2;
             storage.add(text);
           }
           else
           {
             // Negate X% damage
-            String text="Negate "+percentageDamage+"% damage";
+            String text="Negate "+percentageDamage+DAMAGE_2;
             storage.add(text);
           }
         }
@@ -374,12 +374,12 @@ public class EffectDisplay
           int damage=Math.round(Math.abs(safeValue));
           if (percentage!=100)
           {
-            String text=percentage+"% chance to Reflect "+damage+" damage";
+            String text=percentage+"% chance to Reflect "+damage+DAMAGE_1;
             storage.add(text);
           }
           else
           {
-            String text="Reflect "+damage+" damage";
+            String text="Reflect "+damage+DAMAGE_1;
             storage.add(text);
           }
         }
@@ -389,12 +389,12 @@ public class EffectDisplay
           int percentageDamage=(int)(safeValue*100);
           if (percentage!=100)
           {
-            String text=percentage+"% chance to Reflect "+percentageDamage+"% damage";
+            String text=percentage+"% chance to Reflect "+percentageDamage+DAMAGE_2;
             storage.add(text);
           }
           else
           {
-            String text="Reflect "+percentageDamage+"% damage";
+            String text="Reflect "+percentageDamage+DAMAGE_2;
             storage.add(text);
           }
         }
@@ -490,7 +490,7 @@ public class EffectDisplay
       if (overTimeChange!=null)
       {
         Float overTimeValue=getValue(overTimeChange);
-        String text=overTimeValue+" "+damageType.getLabel()+" Damage"+overtime;
+        String text=overTimeValue+" "+damageType.getLabel()+DAMAGE+overtime;
         storage.add(text);
       }
     }
@@ -502,13 +502,13 @@ public class EffectDisplay
       if (initialChange!=null)
       {
         Float initialValue=getValue(initialChange);
-        String text="Restores "+initialValue+" "+stat.getName()+" initially.";
+        String text=RESTORES+initialValue+" "+stat.getName()+" initially.";
         storage.add(text);
       }
       if (overTimeChange!=null)
       {
         Float overTimeValue=getValue(overTimeChange);
-        String text="Restores "+overTimeValue+" "+stat.getName()+overtime;
+        String text=RESTORES+overTimeValue+" "+stat.getName()+overtime;
         storage.add(text);
       }
     }
@@ -636,4 +636,12 @@ public class EffectDisplay
     }
     return sb.toString();
   }
+  
+  private static final String DAMAGE = " Damage";
+  
+  private static final String RESTORES = "Restores ";
+  
+  private static final String DAMAGE_1 = " damage";
+  
+  private static final String DAMAGE_2 = "% damage";
 }
